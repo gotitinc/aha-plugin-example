@@ -10,6 +10,9 @@
     "lib/*.{js,map}",
     "dist/**/*.{css,scss,sass}"
   ],
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "clean": "rimraf lib es dist",
     "build": "yarn clean && yarn build:es && yarn build:lib && yarn copy:css",
