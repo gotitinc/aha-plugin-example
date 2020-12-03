@@ -1,0 +1,39 @@
+{
+  "name": "@ahaui/plugin-example",
+  "version": "2.0.0-alpha.1",
+  "license": "Apache-2.0",
+  "main": "lib/index.js",
+  "module": "es/index.js",
+  "types": "src/index.d.ts",
+  "files": [
+    "es/*.{js,map}",
+    "lib/*.{js,map}",
+    "dist/**/*.{css,scss,sass}"
+  ],
+  "scripts": {
+    "clean": "rimraf lib es dist",
+    "build": "yarn clean && yarn build:es && yarn build:lib && yarn copy:css",
+    "build:es": "NODE_ENV=production BABEL_ENV=production webpack --config ./config/webpack.config.es.js",
+    "build:lib": "NODE_ENV=production BABEL_ENV=production webpack --config ./config/webpack.config.lib.js",
+    "copy:css": "mkdir -p ./dist/css/ && cp -R ./src/assets/css/ ./dist/css/",
+    "prepublishOnly": "yarn build"
+  },
+  "peerDependencies": {
+    "@ahaui/react": "^2"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.5.5",
+    "@babel/core": "^7.5.5",
+    "@babel/preset-env": "^7.5.5",
+    "@babel/register": "^7.5.5",
+    "babel-loader": "^8.0.6",
+    "case-sensitive-paths-webpack-plugin": "^2.3.0",
+    "cross-env": "^5.2.0",
+    "dotenv": "^8.2.0",
+    "file-loader": "^6.2.0",
+    "rimraf": "^3.0.0",
+    "url-loader": "^4.1.1",
+    "webpack": "^4.39.3",
+    "webpack-cli": "^4.2.0"
+  }
+}
